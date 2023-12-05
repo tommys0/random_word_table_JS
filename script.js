@@ -24,10 +24,23 @@ function generateTable() {
             cell.textContent = randomWord;
         }
     }
+
+    const addButton = document.createElement('button');
+    addButton.textContent = 'Add Row';
+    addButton.onclick = addRow;
+    addButton.classList.add('addrow-button');
+
+    body.appendChild(addButton);
 }
 
 function addRow() {
-
+    const table = document.getElementById('myTable');
+    const row = table.insertRow();
+    for (let i = 0; i < 3; i++) {
+        const cell = row.insertCell();
+        const randomWord = words[Math.floor(Math.random() * words.length)];
+        cell.textContent = randomWord;
+    }
 }
 
 function deleteRow() {
