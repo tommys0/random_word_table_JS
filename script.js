@@ -25,12 +25,22 @@ function generateTable() {
         }
     }
 
-    const addButton = document.createElement('button');
-    addButton.textContent = 'Add Row';
-    addButton.onclick = addRow;
-    addButton.classList.add('addrow-button');
-
+    const addButton = createButton('Add Row', addRow);
     body.appendChild(addButton);
+
+    const deleteButton = createButton('Delete Row', deleteRow);
+    body.appendChild(deleteButton);
+
+    const randomButton = createButton('Random Rows', randomRows);
+    body.appendChild(randomButton);
+}
+
+function createButton(text, onClick) {
+    const button = document.createElement('button');
+    button.textContent = text;
+    button.onclick = onClick;
+    button.classList.add('row-button');
+    return button;
 }
 
 function addRow() {
@@ -44,7 +54,11 @@ function addRow() {
 }
 
 function deleteRow() {
-
+    const table = document.getElementById('myTable')
+    const rowCount = table.rows.length
+    if (rowCount > 1) {
+        table.deleteRow(rowCount - 1)
+    }
 }
 
 function randomRows() {
